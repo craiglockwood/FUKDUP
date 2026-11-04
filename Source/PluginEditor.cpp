@@ -296,7 +296,7 @@ void FukdupAudioProcessorEditor::drawLogo (juce::Graphics& g, bool anyOn)
 
     g.setFont (mono (11.0f));
     g.setColour (juce::Colours::white.withAlpha (0.4f));
-    g.drawText ("An audio destruction unit made by Craig Lockwood - v.1.2", la.withTrimmedLeft (260.0f), juce::Justification::centredLeft, false);
+    g.drawText ("An audio destruction unit made by Craig Lockwood. V1.2", la.withTrimmedLeft (260.0f), juce::Justification::centredLeft, false);
     g.drawText (juce::String (proc.visBpm.load(), 1) + " bpm", la, juce::Justification::centredRight, false);
 }
 
