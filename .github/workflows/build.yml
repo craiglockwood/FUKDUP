@@ -36,9 +36,7 @@ jobs:
           pkgbuild --analyze --root "$ROOT" components.plist
           i=0
           while /usr/libexec/PlistBuddy -c "Print :$i" components.plist >/dev/null 2>&1; do
-            /usr/libexec/PlistBuddy -c "Set :$i:BundleIsRelocatable false" components.plist
-            i=$((i+1))
-          done
+             plutil -replace "$i.BundleIsRelocatable" -bool NO components.plist          done
 
           pkgbuild --root "$ROOT" --component-plist components.plist --scripts scripts \
             --identifier com.fukdup.fukdup.pkg --version "$VERSION" --install-location / FUKDUP-core.pkg
