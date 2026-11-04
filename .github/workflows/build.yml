@@ -1,0 +1,24 @@
+name: Build FUKDUP
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure
+        run: cmake -B build -DCMAKE_BUILD_TYPE=Release -DCMAKE_OSX_ARCHITECTURES="arm64;x86_64"
+      - name: Build
+        run: cmake --build build --config Release --parallel
+      - uses: actions/upload-artifact@v4
+        with:
+          name: FUKDUP-${{ matrix.os }}
+          path: |
+            build/FUKDUP_artefacts/Release/VST3
+            build/FUKDUP_artefacts/Release/AU
+          if-no-files-found: ignore
